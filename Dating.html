@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<html><head><title>Radiometric Dating Practice Problems</title></head>
+<body><font face=palatino>
+<h1>Variables</h1>
+<h2>PA = Number of parent atoms</br>
+DP = Number of decay product atoms</br>
+FR = Fraction of the original remaining</br>
+N<sub>1/2</sub> = Number of half-lives</br>
+t<sub>1/2</sub> = Half-life of the parent atom in years</br><hr></br>
+
+<script lang="Javascript">
+<!--
+
+	function SciNot(num){
+		var i = 0;
+		if(num>=10000){
+			while(num>10){
+				i++;
+				num /= 10;
+			}
+			return Math.round(num*100)/100 + " x 10<sup>" + i + "</sup>";
+		}
+		else{
+			return num;
+		}
+	}
+	function RandomInt(low, high){
+		return (Math.floor(Math.random() * 96387867) % (high-(low-1)))+low;
+	}
+
+	var i = RandomInt(0,3);
+	var decayPairs = [["<sup>14</sup>C", "<sup>14</sup>N", 5730, "carbon-14"],
+			["<sup>40</sup>K", "<sup>40</sup>Ar", 1248000000, "K-Ar"],
+			["<sup>238</sup>U", "<sup>206</sup>Pb", 4470000000, "<sup>238</sup>U-<sup>206</sup>Pb"],
+			["<sup>235</sup>U", "<sup>207</sup>Pb", 710000000, "<sup>235</sup>U-<sup>207</sup>Pb"],]
+
+	var i = RandomInt(0, decayPairs.length-1);
+	var parent = decayPairs[i][0];
+	var product = decayPairs[i][1];
+	var nHalflife = decayPairs[i][2];
+	var halflife = SciNot(nHalflife) + "yrs"
+	var label = decayPairs[i][3];
+
+	var nPA = RandomInt(10, 100);
+	var nDP = RandomInt(100, 300); //min: 1 half-life, max: 5.9 half-lives
+	var nFR = nPA/(nPA+nDP);
+	nFR = Math.round(nFR*1000)/1000;
+
+	document.write("You are an evolutionary biologist who is studying evolution. As part of of your study, you have to radiometrically date multiple fossil samples. In the latest sample you determine that it is best to use the ");	
+	document.write(label);
+	document.write(" method of dating; in which " + parent + " decays into " + product + ". In the sample you determine that for every ");
+	document.write(nPA + " atoms of " + parent + ", you find " + nDP + " atoms of " + product + ". ");
+	document.write(parent + " has a half-life of " + halflife + ". How old is the sample?");
+	document.write("</br></br>PA = " + nPA + "</br>DP = " + nDP + "</br>t<sub>1/2</sub> = " + halflife);
+
+	document.write("</br></br><font color=red>Scroll down for the answers</font>");
+	for(j=0;j<25; j++){
+		document.write("</br>");
+	}
+
+	document.write("Answers:</br>");
+	document.write("PA / (PA + DP) = FR</br>");
+	document.write(nPA + " / (" + nPA + " + " + nDP + ") = " + nFR + "</br></br>");
+	document.write("Log<sub>2</sub>(1 / FR) = N<sub>1/2</sub></br>");
+	document.write("Log<sub>2</sub>(1 / " + nFR + ") = " + Math.round(Math.log2(1/nFR)*1000)/1000 + "</br></br>");
+	document.write("N<sub>1/2</sub> * t<sub>1/2</sub> = Age</br>");
+	document.write(Math.round(Math.log2(1/nFR)*1000)/1000 + " * " + halflife + " = " + SciNot(nHalflife*Math.log2(1/nFR)) + "yrs");
+	
+--></script>
+</h2></body></html>

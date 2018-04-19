@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<html><head></head>
+<body><font face=verdana>
+<h1>Variables</h1>
+<h2>IC = Initial Concentration (cfu/ml)</br>
+DF = Dilution Factor (unitless)</br>
+FC = Final Concentration (cfu/ml)</br>
+PL = Volume Plated (ul)</br>
+CO = Colonies (cfu)</h2><hr>
+
+<h2>
+<script lang="Javascript">
+<!--
+
+	function SciNot(num){
+		var i = 0;
+		while(num>10){
+			i++;
+			num /= 10;
+		}
+		return Math.round(num*100)/100 + " x 10<sup>" + i + "</sup>";
+	}
+	function RandomInt(low, high){
+		return (Math.floor(Math.random() * 96387867) % (high-(low-1)))+low;
+	}
+	
+
+	//var nFC = (RandomInt(100, 1000)/100) * Math.pow(10, RandomInt(2,4));
+	var nDF = (RandomInt(100, 1000)/100) * Math.pow(10, RandomInt(4,8));
+	var nPL = RandomInt(50, 200);
+
+	var nCO = RandomInt(30,300);
+	var nFC = nCO/(nPL/1000);
+	//var nCO = nFC * (nPL/1000);
+	var nIC = nDF * nFC;
+
+	var FC = SciNot(nFC) + "cfu/ml";
+	var DF = SciNot(nDF);
+	var PL = nPL + "ul";
+	var IC = SciNot(nIC) + "cfu/ml";
+	var CO = SciNot(nCO) + " colonies";
+
+	var j = 0;
+
+	var i = RandomInt(1,4);
+	
+	switch(i){
+		case 1:
+			document.write("A student has had a rather unfortunate turn of events! They've lost the page of their lab notebook that detailed the concentrations of the cultures they were working with! All that's left are the plates. The label on the plates says that they were plated with " + PL + " and the culture was diluted by " + DF + " before being plated. There are " + CO + " on the plate. What are the initial and final concentrations (IC and FC)?</br></br></br>");
+			document.write("IC = ???</br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("FC = ???</br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 2:
+			document.write("A student was determining the viable cell count of a culture that the entire class was using that day (crazy, I know) and threw away their tubes and dilutions without recording them. They find out from a classmate that the culture had a concentration of " + IC + ". The student still has the plates, which indicate that " + PL + " was plated and there are " + CO + ". What was their dilution factor and their final concentration (DF and FC)?</br></br></br>");
+			document.write("IC = " + IC + "</br>");
+			document.write("DF = ???</br>");
+			document.write("FC = ???</br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 3:
+			document.write("A student was given a culture with a concentration of " + IC + " and diluted it by " + DF + ". In their haste to leave genetics lab they forgot to record their final concentration (FC) and how much they plated (PL). Their plate has " + CO + ". Can you help this hasty classmate fill in the gaps in their data (PL and FC)?</br></br></br>");
+			document.write("IC = " + IC + "</br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("FC = ???</br>");
+			document.write("PL = ???</br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 4:
+			document.write("If you are given a culture with a concentration of " + IC + ", told to dilute it by " + DF + ", and plate " + PL + ", what is the final concentration (FC) and how many colonies will (theoretically) be on the plate (CO)?</br></br></br>");
+			document.write("IC = " + IC + "</br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("FC = ???</br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("CO = ???</br>");
+			break;
+	}
+
+	document.write("<font color=red>Scroll down for the answers</font>");
+	for(j=0;j<25; j++){
+		document.write("</br>");}
+
+	switch(i){
+		case 1:
+			document.write("<font color=red>IC = " + IC + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + DF + " * " + FC + " </font></br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("<font color=red>FC = " + FC + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + CO + " / " + (nPL/1000) + "ml</font></br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 2:
+			document.write("IC = " + IC + "</br>");
+			document.write("<font color=red>DF = " + DF + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + IC + " / " + FC + " </font></br>");
+			document.write("<font color=red>FC = " + FC + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + CO + " / " + (nPL/1000) + "ml</font></br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 3:
+			document.write("IC = " + IC + "</br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("<font color=red>FC = " + FC + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + IC + " / " + DF + " </font></br>");
+			document.write("<font color=red>PL = " + PL + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + CO + " / " + FC + " </font></br>");
+			document.write("CO = " + CO + "</br>");
+			break;
+		case 4:
+			document.write("IC = " + IC + "</br>");
+			document.write("DF = " + DF + "</br>");
+			document.write("<font color=red>FC = " + FC + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + IC + " / " + DF + " </font></br>");
+			document.write("PL = " + PL + "</br>");
+			document.write("<font color=red>CO = " + CO + "&nbsp;&nbsp;</font>||<font color=red>&nbsp;&nbsp;" + FC + " * " + (nPL/1000) + "ml </font></br>");
+			break;
+	}
+	
+--></script>
+</h2></body></html>
